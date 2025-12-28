@@ -1,0 +1,41 @@
+{
+  "name": "textlands",
+  "version": "0.1.0",
+  "description": "Play TextLands text adventures from your terminal",
+  "bin": {
+    "textlands": "./bin/textlands"
+  },
+  "scripts": {
+    "postinstall": "node scripts/install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textlands/cli.git"
+  },
+  "keywords": [
+    "textlands",
+    "game",
+    "text-adventure",
+    "mmo",
+    "ai",
+    "cli"
+  ],
+  "author": "TextLands <hello@textlands.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textlands/cli/issues"
+  },
+  "homepage": "https://textlands.com",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}

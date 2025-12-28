@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# PyInstaller
+*.manifest
+*.spec
+!textlands.spec
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# npm
+npm/node_modules/
+npm/bin/textlands
+npm/bin/textlands.exe
+!npm/bin/textlands
+
+# Homebrew
+homebrew/*.tar.gz
+
+# OS
+.DS_Store
+Thumbs.db
