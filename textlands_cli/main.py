@@ -12,15 +12,27 @@ from rich.prompt import Prompt, IntPrompt
 from rich.text import Text
 from rich.markdown import Markdown
 
-from . import __version__
-from .client import TextLandsClient
-from .config import (
-    get_api_url, set_api_url,
-    get_api_key, set_api_key, clear_api_key,
-    get_guest_id, set_guest_id,
-    get_current_session, set_current_session, clear_current_session,
-    is_authenticated,
-)
+try:
+    from . import __version__
+    from .client import TextLandsClient
+    from .config import (
+        get_api_url, set_api_url,
+        get_api_key, set_api_key, clear_api_key,
+        get_guest_id, set_guest_id,
+        get_current_session, set_current_session, clear_current_session,
+        is_authenticated,
+    )
+except ImportError:
+    # PyInstaller standalone binary
+    from textlands_cli import __version__
+    from textlands_cli.client import TextLandsClient
+    from textlands_cli.config import (
+        get_api_url, set_api_url,
+        get_api_key, set_api_key, clear_api_key,
+        get_guest_id, set_guest_id,
+        get_current_session, set_current_session, clear_current_session,
+        is_authenticated,
+    )
 
 app = typer.Typer(
     name="textlands",
