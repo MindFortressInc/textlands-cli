@@ -9,7 +9,7 @@
 set -e
 
 VERSION="${TEXTLANDS_VERSION:-latest}"
-REPO="textlands/cli"
+REPO="MindFortressInc/textlands-cli"
 INSTALL_DIR="${TEXTLANDS_INSTALL_DIR:-$HOME/.local/bin}"
 
 # Colors

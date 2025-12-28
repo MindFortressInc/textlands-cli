@@ -45,7 +45,7 @@ textlands = "textlands_cli.main:app"
 [project.urls]
 Homepage = "https://textlands.com"
 Documentation = "https://textlands.com/docs"
-Repository = "https://github.com/MindFortressInc/textlands"
+Repository = "https://github.com/MindFortressInc/textlands-cli"
 
 [tool.setuptools.packages.find]
 where = ["."]

@@ -9,7 +9,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const VERSION = require('../package.json').version;
-const REPO = 'textlands/cli';
+const REPO = 'MindFortressInc/textlands-cli';
 
 function getPlatformBinary() {
   const platform = process.platform;

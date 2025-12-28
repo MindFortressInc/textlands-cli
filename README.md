@@ -17,7 +17,7 @@ curl -fsSL https://textlands.com/install.sh | bash
 pip install textlands
 
 # Homebrew (macOS/Linux)
-brew tap textlands/tap
+brew tap MindFortressInc/textlands
 brew install textlands
 
 # npm (Node.js 16+)
@@ -26,7 +26,7 @@ npm install -g textlands
 
 ### Download Binary
 
-Pre-built binaries available on [GitHub Releases](https://github.com/textlands/cli/releases):
+Pre-built binaries available on [GitHub Releases](https://github.com/MindFortressInc/textlands-cli/releases):
 
 | Platform | Download |
 |----------|----------|
@@ -89,7 +89,7 @@ Environment variables:
 
 ```bash
 # Clone and install
-git clone https://github.com/textlands/cli
+git clone https://github.com/MindFortressInc/textlands-cli
 cd cli
 pip install -e ".[dev]"
 

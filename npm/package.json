@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/textlands/cli.git"
+    "url": "git+https://github.com/MindFortressInc/textlands-cli.git"
   },
   "keywords": [
     "textlands",
@@ -23,7 +23,7 @@
   "author": "TextLands <hello@textlands.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/textlands/cli/issues"
+    "url": "https://github.com/MindFortressInc/textlands-cli/issues"
   },
   "homepage": "https://textlands.com",
   "engines": {
