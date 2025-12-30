@@ -128,4 +128,60 @@ def clear_current_session() -> None:
 
 def is_authenticated() -> bool:
     """Check if user has stored credentials."""
-    return get_api_key() is not None
+    return get_api_key() is not None or get_session_token() is not None
+
+
+def get_session_token() -> Optional[str]:
+    """Get session token from keyring or config."""
+    if HAS_KEYRING:
+        try:
+            return keyring.get_password(KEYRING_SERVICE, "session_token")
+        except Exception:
+            pass
+    config = load_config()
+    return config.get("session_token")
+
+
+def set_session_token(token: str) -> None:
+    """Store session token securely."""
+    if HAS_KEYRING:
+        try:
+            keyring.set_password(KEYRING_SERVICE, "session_token", token)
+            return
+        except Exception:
+            pass
+    config = load_config()
+    config["session_token"] = token
+    save_config(config)
+
+
+def clear_session_token() -> None:
+    """Remove stored session token."""
+    if HAS_KEYRING:
+        try:
+            keyring.delete_password(KEYRING_SERVICE, "session_token")
+        except Exception:
+            pass
+    config = load_config()
+    config.pop("session_token", None)
+    save_config(config)
+
+
+def get_user_info() -> Optional[dict]:
+    """Get stored user info (email, display_name, user_id)."""
+    config = load_config()
+    return config.get("user_info")
+
+
+def set_user_info(info: dict) -> None:
+    """Store user info."""
+    config = load_config()
+    config["user_info"] = info
+    save_config(config)
+
+
+def clear_user_info() -> None:
+    """Clear stored user info."""
+    config = load_config()
+    config.pop("user_info", None)
+    save_config(config)

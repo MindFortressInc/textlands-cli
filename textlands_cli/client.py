@@ -180,3 +180,85 @@ class TextLandsClient:
         )
         resp.raise_for_status()
         return resp.json()
+
+    # =========== Chat ===========
+
+    def send_dm(self, recipient: str, content: str) -> dict[str, Any]:
+        """Send a direct message to another player."""
+        resp = self.client.post(
+            "/dm/send-by-key",
+            params={"sender_key": self.guest_id or "cli_user", "recipient_key": recipient, "content": content},
+        )
+        return resp.json()
+
+    def get_pending_messages(self) -> dict[str, Any]:
+        """Get pending/unread messages."""
+        player_key = self.guest_id or "cli_user"
+        resp = self.client.get(f"/dm/pending/{player_key}")
+        return resp.json()
+
+    def get_unread_count(self) -> int:
+        """Get unread message count."""
+        player_key = self.guest_id or "cli_user"
+        resp = self.client.get(f"/dm/unread/{player_key}")
+        data = resp.json()
+        return data.get("count", 0)
+
+    def send_global_chat(self, message: str) -> dict[str, Any]:
+        """Send a message to global chat."""
+        player_key = self.guest_id or "cli_user"
+        resp = self.client.post(
+            "/chat/global/send",
+            params={"player_key": player_key, "message": message},
+        )
+        return resp.json()
+
+    def send_land_chat(self, message: str, land_key: str = None) -> dict[str, Any]:
+        """Send a message to land chat."""
+        player_key = self.guest_id or "cli_user"
+        params = {"player_key": player_key, "message": message}
+        if land_key:
+            params["land_key"] = land_key
+        resp = self.client.post("/chat/land/send", params=params)
+        return resp.json()
+
+    def get_global_chat(self, limit: int = 10) -> dict[str, Any]:
+        """Get recent global chat messages."""
+        resp = self.client.get("/chat/global", params={"limit": limit})
+        return resp.json()
+
+    def get_land_chat(self, land_key: str, limit: int = 10) -> dict[str, Any]:
+        """Get recent land chat messages."""
+        resp = self.client.get(f"/chat/land/{land_key}", params={"limit": limit})
+        return resp.json()
+
+    def subscribe_chat(self, channel: str) -> dict[str, Any]:
+        """Subscribe to a chat channel."""
+        player_key = self.guest_id or "cli_user"
+        resp = self.client.post(
+            "/chat/subscribe",
+            params={"player_key": player_key, "channel": channel},
+        )
+        return resp.json()
+
+    # =========== Auth ===========
+
+    def request_cli_auth(self, email: str) -> dict[str, Any]:
+        """Request CLI device authorization. Returns device_code for polling."""
+        resp = self.client.post("/auth/cli/request", json={"email": email})
+        resp.raise_for_status()
+        return resp.json()
+
+    def poll_cli_token(self, device_code: str) -> dict[str, Any]:
+        """Poll for CLI session token. Returns status: pending/authorized/expired."""
+        resp = self.client.get("/auth/cli/token", params={"device_code": device_code})
+        resp.raise_for_status()
+        return resp.json()
+
+    # =========== Lands ===========
+
+    def list_lands(self) -> list[dict[str, Any]]:
+        """List available lands (genre categories) with their starting realms."""
+        resp = self.client.get("/infinite/lands")
+        resp.raise_for_status()
+        return resp.json()
